@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalles de Usuario</title>
+</head>
+<body>
+<h1> Usuario </h1>
+<form name="usr">
+
+  <input type="text" name="numusuario">
+</form>
+<div id="demo">
+  <span>Username</span>
+  <span id="uname"></span> <br/>
+  <span>Nombre</span>
+  <span id="name"></span> <br />
+  <span>e-mail</span>
+  <span id="mail"></span>
+</div>
+<button onclick="getdata(document.usr.numusuario.value)"> BRING USER DATA</button>
+<button onclick="getdata(1)"> 1 </button>
+<button onclick="getdata(2)"> 2 </button>
+<button onclick="getdata(3)"> 3 </button>
+<script>
+
+  function getdata(userid) {
+    // alert("dbtojson.php?usuario+"+userid);
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onload = function () {
+      const myObj = JSON.parse(this.responseText);
+      //document.getElementById("demo").innerHTML = myObj.id_user;
+
+      document.getElementById("uname").innerHTML = myObj.username;
+      document.getElementById("name").innerHTML = myObj.firstnames;
+      document.getElementById("mail").innerHTML = myObj.email;
+    }
+    //xmlhttp.open("GET", "dbtojson.php?<?php //echo "usuario=" . $_GET['usuario'] ?>", true);
+    xmlhttp.open("GET", "dbtojson.php?usuario="+userid, true);
+    xmlhttp.send();
+  }
+</script>
+</body>
+</html>

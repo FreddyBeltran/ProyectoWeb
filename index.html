@@ -1,13 +1,42 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
     <head>
+        <meta charset="UTF-8">
+        <title>Register</title>
         <link rel="stylesheet" href="styles.css">
     </head>
 
     <body>
-        
+        <script>
+            function register(){
+                if(document.getElementById("username" == "")){
+                    alert("Username is empty.");
+                } else if(document.getElementById("password" == "")){
+                    alert("Password is empty.");
+                } else if(document.getElementById("firstnames" == "")){
+                    alert("First names are empty.");
+                } else if(document.getElementById("lastnames" == "")){
+                    alert("Last names are empty.");
+                } else if(document.getElementById("email" == "")){
+                    alert("E-Mail is empty.");
+                }            
+            }
+        </script>
+        <form action="sql.php" method="get">
+            <h4>Username</h4>
+            <input type="text" id="username">
+            <h4>Password</h4>
+            <input type="text" id="password">
+            <h4>First Names</h4>
+            <input type="text" id="firstnames">
+            <h4>Last Names</h4>
+            <input type="text" id="lastnames">
+            <h4>E-Mail</h4>
+            <input type="text" id="email">
+            <button type="submit" onclick="register()"> Register </button>
+        </form>
     </body>
 
 </html>
