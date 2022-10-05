@@ -21,10 +21,11 @@ const register = async (req, res) => {
         password: password,
         firstnames: firstnames,
         lastnames: lastnames,
-        email: email
+        email: email,
+        updated_at: "2022-01-01 00:00:00"
     });
-    if(newUser) {
-        return res.status(200);
+    if(user) {
+        return res.status(200).send("Succesful.");
     } 
     return res.status(400);
 }
