@@ -19,4 +19,4 @@ const getUsers = async (req, res) => {
     return res.status(400);
 }
 
-module.exports = { userById, getUsers}
+module.exports = { userById, getUsers };
