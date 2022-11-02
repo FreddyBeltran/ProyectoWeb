@@ -103,7 +103,7 @@ const addFriend = async (req, res) => {
     
 }
 
-const removeFriend = async (req, res) => {
+const deleteFriend = async (req, res) => {
     const { username } = req.body;
     let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
     if(!user) {
@@ -112,4 +112,6 @@ const removeFriend = async (req, res) => {
     
 }
 
-module.exports = { register, login, changeUser, changePassword }
+module.exports = { register, login, changeUser, changePassword, 
+    addFriend, deleteFriend, addRating, changeRating, addComment, changeComment,
+    addMovie, deleteMovie, createList, deleteList, setStatus, changeTitle, changeDescription }

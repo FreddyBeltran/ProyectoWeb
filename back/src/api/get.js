@@ -1,7 +1,5 @@
 
-const db = require('../db/connect')
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+const db = require('../db/connect');
 
 
 const userById = async (req, res) => {
@@ -32,7 +30,7 @@ const userExists = async (req, res) => {
 }
 
 const getMovie = async (req, res) => {
-    const {  } = req.body;
+    const { title } = req.body;
     const doc = new JSDOM(website);
     const list_table = doc.window.document.querySelector('.lister-list');
     const list = JSON.parse(list_table.getAttribute('titleColumn'));
@@ -40,4 +38,4 @@ const getMovie = async (req, res) => {
     console.log(top250)
 }
 
-module.exports = { userById, getUsers, userExists, getMovie };
+module.exports = { userById, getUsers, userExists, getMovie, searchMovie, getStatus, getFriends, getMovieForList };
