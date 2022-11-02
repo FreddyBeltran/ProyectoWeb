@@ -19,4 +19,13 @@ const getUsers = async (req, res) => {
     return res.status(400);
 }
 
-module.exports = { userById, getUsers };
+const userExists = async (req, res) => {
+    const { username } = req.body;
+    let [user] = await db.query( `SELECT * FROM users WHERE username = ?`, username );
+    if(user){
+        return res.status(200).json(user);
+    } 
+    return res.status(400);
+}
+
+module.exports = { userById, getUsers, userExists };
