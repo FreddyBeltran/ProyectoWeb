@@ -17,5 +17,5 @@ routes(app);
 require('./src/db/connect');
 
 app.listen(process.env.PORT, () => {
-    console.log('Started on PORT ', process.env.PORT)
+    console.log('Started on PORT ', process.env.PORT);
 })

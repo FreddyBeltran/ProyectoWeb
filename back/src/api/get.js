@@ -1,5 +1,8 @@
 
 const db = require('../db/connect')
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
 
 const userById = async (req, res) => {
     const { id } = req.body;
@@ -24,8 +27,17 @@ const userExists = async (req, res) => {
     let [user] = await db.query( `SELECT * FROM users WHERE username = ?`, username );
     if(user){
         return res.status(200).json(user);
-    } 
+    }
     return res.status(400);
 }
 
-module.exports = { userById, getUsers, userExists };
+const getMovie = async (req, res) => {
+    const {  } = req.body;
+    const doc = new JSDOM(website);
+    const list_table = doc.window.document.querySelector('.lister-list');
+    const list = JSON.parse(list_table.getAttribute('titleColumn'));
+    const top250 = list.map(x => [x.title]);
+    console.log(top250)
+}
+
+module.exports = { userById, getUsers, userExists, getMovie };
