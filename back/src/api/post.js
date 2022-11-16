@@ -2,7 +2,7 @@
 const db = require('../db/connect')
 
 const register = async (req, res) => {
-    const { username, password, firstnames, lastnames, email } = req.body
+    const { username, password, firstnames, lastnames, email } = req.body;
 
     let [email_check] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
     if (email_check.length > 0) {
@@ -113,5 +113,4 @@ const deleteFriend = async (req, res) => {
 }
 
 module.exports = { register, login, changeUser, changePassword, 
-    addFriend, deleteFriend, addRating, changeRating, addComment, changeComment,
-    addMovie, deleteMovie, createList, deleteList, setStatus, changeTitle, changeDescription }
+    addFriend, deleteFriend } // , addRating, changeRating, addComment, changeComment, addMovie, deleteMovie, createList, deleteList, setStatus, changeTitle, changeDescription 

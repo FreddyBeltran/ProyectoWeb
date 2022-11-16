@@ -20,7 +20,7 @@ const getUsers = async (req, res) => {
     return res.status(400);
 }
 
-const userExists = async (req, res) => {
+const usernameExists = async (req, res) => {
     const { username } = req.body;
     let [user] = await db.query( `SELECT * FROM users WHERE username = ?`, username );
     if(user){
@@ -38,4 +38,4 @@ const getMovie = async (req, res) => {
     console.log(top250)
 }
 
-module.exports = { userById, getUsers, userExists, getMovie, searchMovie, getStatus, getFriends, getMovieForList };
+module.exports = { userById, getUsers, usernameExists, getMovie }; //, searchMovie, getStatus, getFriends, getMovieForList
