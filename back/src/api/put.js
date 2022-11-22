@@ -30,4 +30,56 @@ const register = async (req, res) => {
     return res.status(400);
 }
 
-module.exports = { register };
+const list = async (req, res) => {
+    const { username, password, listname, desc } = req.body;
+    let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
+    if(user) {
+        if(user.password === password){
+            let [lists] = await db.query('SELECT * FROM usermovielist WHERE iduser = ?', user.id_user);
+            for(list of lists){
+                if(list.nombre === listname){
+                    return res.status(400).send("list already exists.");
+                }
+            }
+            let [list] = await db.query('INSERT INTO usermovielist SET ?', {
+                iduser: user.id_user,
+                nombre: listname,
+                descripcion: desc
+            });
+            if(list){
+                return res.status(200).send("list created.");
+            }
+            return res.status(400).send("list not created.");
+        } 
+    }
+    return res.status(400);
+}
+
+const movie = async (req, res) => {
+    const { username, password, listname, desc } = req.body;
+    let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
+    if(user) {
+        if(user.password === password){
+            let [lists] = await db.query('SELECT * FROM usermovielist WHERE iduser = ?', user.id_user);
+            for(list of lists){
+                if(list.nombre === listname){
+                    return res.status(400).send("list already exists.");
+                }
+            }
+            let [list] = await db.query('INSERT INTO usermovielist SET ?', {
+                iduser: user.id_user,
+                nombre: listname,
+                descripcion: desc
+            });
+            if(list){
+                return res.status(200).send("list created.");
+            }
+            return res.status(400).send("list not created.");
+        } 
+    }
+    return res.status(400);
+}
+
+
+
+module.exports = { register, list, movie };
