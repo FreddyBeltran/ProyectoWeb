@@ -2,12 +2,64 @@
 const db = require('../db/connect')
 
 const deleteUser = async (req, res) => {
-    const { username } = req.body;
+    const { username, password } = req.body;
     let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
     if(!user) {
         return res.status(400);
     }
-    
+    if(user.password === password){
+        //DELETE
+        return res.status(200);
+    }
+    return res.status(400);
 }
 
-module.exports = { deleteUser } 
+const deleteList = async (req, res) => {
+    const { username, password, name } = req.body;
+    let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
+    if(!user) {
+        return res.status(400);
+    }
+    if(user.password === password){
+        let [lists] = await db.query('SELECT * FROM usermovielist WHERE iduser = ?', user.id_user);
+        for(list of lists){
+            if(list.nombre === name){
+                //DELETE
+                return res.status(200);
+            }
+        }
+        //DELETE
+        return res.status(404);
+    }
+    return res.status(400);
+}
+
+const deleteMovie = async (req, res) => {
+    const { username, password, movie, listname } = req.body;
+    let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
+    if(!user) {
+        return res.status(400);
+    }
+    if(user.password === password){
+        let [lists] = await db.query('SELECT * FROM usermovielist WHERE iduser = ?', user.id_user);
+        for(list of lists){
+            if(list.nombre === listname){
+                let [movies] = await db.query('SELECT * FROM movies WHERE iduser = ?', user.id_user);
+                for(movie of list){
+                    
+                    if(list.nombre === listname){
+                        //DELETE
+                        return res.status(200);
+                    }
+                }
+                //DELETE
+                return res.status(404);
+            }
+        }
+        //DELETE
+        return res.status(404);
+    }
+    return res.status(400);
+}
+
+module.exports = { deleteUser, deleteList, deleteMovie } 
