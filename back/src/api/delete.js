@@ -8,28 +8,21 @@ const deleteUser = async (req, res) => {
         return res.status(400);
     }
     if(user.password === password){
-        user.is_deleted = 1;
-        let deleteduser = await db.query('INSERT INTO users SET ?', user);
+        await db.query('UPDATE users SET is_deleted = TRUE WHERE username = ?', username);
         return res.status(200);
     }
     return res.status(400);
 }
 
 const deleteList = async (req, res) => {
-    const { username, password, name } = req.body;
+    const { username, password, movielistid } = req.body;
     let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
     if(!user) {
         return res.status(400);
     }
     if(user.password === password){
-        let [lists] = await db.query('SELECT * FROM usermovielist WHERE iduser = ?', user.id_user);
-        for(list of lists){
-            if(list.nombre === name){
-                //delete
-                return res.status(200);
-            }
-        }
-        return res.status(404);
+        await db.query('DELETE FROM usermovielist WHERE iduser = ', user.id_user, ' AND movielistid = ?', movielistid);
+        return res.status(200);
     }
     return res.status(400);
 }

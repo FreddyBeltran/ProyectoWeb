@@ -39,11 +39,7 @@ const usernameExists = async (req, res) => {
 
 const getMovie = async (req, res) => {
     const { title } = req.body;
-    const doc = new JSDOM(website);
-    const list_table = doc.window.document.querySelector('.lister-list');
-    const list = JSON.parse(list_table.getAttribute('titleColumn'));
-    const top250 = list.map(x => [x.title]);
-    console.log(top250)
+    
 }
 
 const getLists = async (req, res) => {
@@ -56,7 +52,7 @@ const getLists = async (req, res) => {
         let [lists] = await db.query('SELECT * FROM usermovielist WHERE iduser = ?', user.id_user);
         let listNames = [];
         for(list of lists){
-            listNames.push(list.nombre)
+            listNames.push(list.movielistid, list.nombre);
         }
         return res.status(200).json(listNames);
     }
@@ -64,19 +60,14 @@ const getLists = async (req, res) => {
 }
 
 const getList = async (req, res) => {
-    const { username, password, name } = req.body;
+    const { username, password, movielistid } = req.body;
     let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
     if(!user) {
         return res.status(400);
     }
     if(user.password === password){
-        let [lists] = await db.query('SELECT * FROM usermovielist WHERE iduser = ?', user.id_user);
-        for(list of lists){
-            if(list.nombre === name){
-                return res.status(200).json(list);
-            }
-        }
-        return res.status(404);
+        let [list] = await db.query('SELECT * FROM usermovielist WHERE iduser = ', user.id_user, ' AND movielistid = ?', movielistid);
+        return res.status(200).json(list);
     }
     return res.status(400);
 }

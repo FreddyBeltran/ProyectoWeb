@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 23, 2022 at 02:11 AM
+-- Generation Time: Nov 23, 2022 at 01:55 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.1.6
 
@@ -24,14 +24,12 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usermovielist`
+-- Table structure for table `listandmovies`
 --
 
-CREATE TABLE `usermovielist` (
-  `movelistid` int(10) UNSIGNED NOT NULL,
-  `iduser` int(10) UNSIGNED NOT NULL,
-  `nombre` varchar(120) NOT NULL,
-  `descripcion` varchar(300) NOT NULL
+CREATE TABLE `listandmovies` (
+  `movieid` int(10) UNSIGNED NOT NULL,
+  `movielistid` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 COMMIT;
 
