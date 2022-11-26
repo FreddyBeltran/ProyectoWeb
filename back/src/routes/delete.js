@@ -3,8 +3,8 @@ const express = require('express');
 const router = express.Router();
 const api = require('../api/delete');
 
-router.put('/deleteuser', api.deleteUser);
-router.put('/deletelist', api.deleteList);
-router.put('/deletemovie', api.deleteMovie);
+router.delete('/deleteuser', api.deleteUser);
+router.delete('/deletelist', api.deleteList);
+router.delete('/deletemovie', api.deleteMovie);
 
 module.exports = router;
