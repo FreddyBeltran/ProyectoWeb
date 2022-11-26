@@ -5,6 +5,7 @@ const api = require('../api/post');
 
 router.post('/login', api.login);
 router.post('/addmovie', api.addMovie);
+router.post('/addrating', api.addRating);
 router.post('/register', api.register);
 router.post('/list', api.list);
 

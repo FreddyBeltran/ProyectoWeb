@@ -26,5 +26,11 @@ const changePassword = async (req, res) => {
     return res.status(200).send("Succesful.");
 }
 
+const changeRating = async (req, res) => {
+    const { id_user, movieid, rating, comment } = req.body;
+    await db.query(`UPDATE userratings SET rating = '${rating}', comment = '${comment}'  WHERE movie = '${movieid}' AND user = '${id_user}'`);
+    return res.status(200).send("Succesful.");
+}
 
-module.exports = { changeUser, changePassword };
+
+module.exports = { changeUser, changePassword, changeRating };

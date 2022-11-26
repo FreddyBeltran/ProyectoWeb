@@ -6,8 +6,8 @@ const api = require('../api/get');
 router.get('/userbyid', api.userById);
 router.get('/userbyusername', api.getUserByUsername);
 router.get('/users', api.getUsers);
-router.get('/usernameExists', api.usernameExists);
-router.get('/getMovie', api.getMovie);
+router.get('/usernameexists', api.usernameExists);
+router.get('/getmovie', api.getMovie);
 router.get('/getuserlists', api.getLists);
 router.get('/getuserlistbyname', api.getList);
 

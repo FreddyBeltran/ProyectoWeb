@@ -1,7 +1,6 @@
 
 const db = require('../db/connect');
 
-
 const userById = async (req, res) => {
     const { id } = req.body;
     let [user] = await db.query( `SELECT * FROM users WHERE id_user = ?`, id );
@@ -37,11 +36,6 @@ const usernameExists = async (req, res) => {
     return res.status(400);
 }
 
-const getMovie = async (req, res) => {
-    const { title } = req.body;
-    
-}
-
 const getLists = async (req, res) => {
     const { username, password } = req.body;
     let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
@@ -60,16 +54,9 @@ const getLists = async (req, res) => {
 }
 
 const getList = async (req, res) => {
-    const { username, password, movielistid } = req.body;
-    let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
-    if(!user) {
-        return res.status(400);
-    }
-    if(user.password === password){
-        let [list] = await db.query('SELECT * FROM usermovielist WHERE iduser = ', user.id_user, ' AND movielistid = ?', movielistid);
-        return res.status(200).json(list);
-    }
-    return res.status(400);
+    const { movielistid } = req.body;
+    let [list] = await db.query('SELECT * FROM usermovielist WHERE movielistid = ?', movielistid);
+    return res.status(200).json(list);
 }
 
-module.exports = { userById, getUserByUsername, getUsers, usernameExists, getMovie, getList, getLists }; //, searchMovie, getStatus, getMovieForList
+module.exports = { userById, getUserByUsername, getUsers, usernameExists, getList, getLists };

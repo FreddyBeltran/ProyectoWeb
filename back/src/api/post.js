@@ -24,16 +24,16 @@ const register = async (req, res) => {
         email: email,
         updated_at: "2022-01-01 00:00:00"
     });
-    if(user) {
+    if(user.length > 0) {
         return res.status(200).send("Succesful.");
     } 
-    return res.status(400);
+    return res.status(400).send('Username not created.');
 }
 
 const login = async (req, res) => {
     const { username, password } = req.body;
     let [user] = await db.query(`SELECT * FROM users WHERE username = '${username}'`);
-    if(!user) {
+    if(user.length == 0) {
         return res.status(400).send('Username not found.');
     }
     if(user[0].password != password){
@@ -45,7 +45,7 @@ const login = async (req, res) => {
 const list = async (req, res) => {
     const { username, password, listname, desc } = req.body;
     let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
-    if(user) {
+    if(user.length > 0) {
         if(user.password === password){
             let [lists] = await db.query('SELECT * FROM usermovielist WHERE iduser = ?', user.id_user);
             for(list of lists){
@@ -58,7 +58,7 @@ const list = async (req, res) => {
                 nombre: listname,
                 descripcion: desc
             });
-            if(list){
+            if(list.length > 0){
                 return res.status(200).send("list created.");
             }
             return res.status(400).send("list not created.");
@@ -76,4 +76,21 @@ const addMovie = async (req, res) => {
     return res.status(400).send('Error adding movie.');
 }
 
-module.exports = { login, list, addMovie, register } // , addRating, changeRating, addComment, changeComment, addMovie, deleteMovie, createList, deleteList, setStatus, changeTitle, changeDescription 
+const addRating = async (req, res) => {
+    const { id_user, movieid, rating, comment } = req.body;
+    let movierating = await db.query('INSERT INTO userratings SET ?', 
+    { 
+        user: id_user, 
+        movie: movieid,
+        rating: rating,
+        comment: comment,
+        created_at: "2022-01-01 00:00:00",
+        updated_at: "2022-01-01 00:00:00"
+    });
+    if(movierating.length > 0) {
+        return res.status(200).send("Succesful.");
+    } 
+    return res.status(400).send('Rating not created.');
+}
+
+module.exports = { login, list, addMovie, register, addRating };
