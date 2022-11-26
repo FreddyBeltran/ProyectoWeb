@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>replitSingleMovieView</title>
+    <!--<link href="style.css" rel="stylesheet" type="text/css" />-->
+  </head>
+
+  <body style="background-color: #131720;">
+    <!--////////////////////"PRUEBA PARA VER CONTENIDO DE LOS PARAMETROS"////////////////////-->
+    <div id ="forTests">
+    </div>
+
+    <!--////////////////////"TITULO PARA REGRESAR A INDEX.HTML"////////////////////-->
+    <div>
+      <a href="index.html">
+        <h1>HOME</h1>
+      </a>
+    </div>
+
+    <!--////////////////////"NOMBRE DE LA PELICULA"////////////////////-->
+    <div id="movieNameSingleView">
+    </div>
+
+    <br/>
+
+    <!--////////////////////"IMAGEN DE LA PELICULA"////////////////////-->
+    <div id ="imageSingleView" style="background-color: #151f30; padding-left: 20px;">
+    </div>
+
+    <br/>
+    <br/>
+
+    <!--////////////////////"DETALLES DE LA PELICULA CON EL NOMBRE, FECHA Y DESCRIPCION"////////////////////-->
+    <div id="detailsSingleView">
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+    <!--////////////////////"DIV PARA HACER REVIEWS"////////////////////-->
+    <div>
+      <h3 style="color: white">MAKE A REVIEW:</h3>
+
+      <br/>
+
+      <form id="newReviewsContent">
+        <input type="text" placeholder="Review....." name="reviewBox" id="reviewBox"/>
+
+        </br>
+
+        <button onclick = "getText()">Add review</button>
+      </form>
+    </div>
+
+    <br/>
+    <br/>
+
+    <!--////////////////////"DIV MOSTRAR REVIEWS"////////////////////-->
+    <div>
+      <h3 style="color: white">PAST REVIEWS:</h3>
+
+      </br>
+
+      <div id="pastReviews">
+      </div>
+    </div>
+  </body>
+
+  <script src="singleView2.js"></script>
+</html>
