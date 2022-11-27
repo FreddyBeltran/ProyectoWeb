@@ -55,13 +55,35 @@ function returnMovies(url)
           let ID = element.id;
           //aLink.setAttribute('href', 'singleView2.html?ID=' + ID); //+ '&lastValue=#');
           aLink.setAttribute('href', 'singleView2.html'); //+ '&lastValue=#');
-          aLink.innerText = 'Go to details';
+          aLink.innerText = 'Go to details  ';
           //////////////////////////////////////////////////////////////////////////////////
+
+
+
+          //////////////////////////////////////////////////////////////////////////////////
+          const aUserList = document.createElement('a');
+          //aLink.setAttribute('href', 'singleViewMovie.html?oneTitle=' + oneTitle + '&twoImg=' + twoImg + '&threeOverview=' + threeOverview + '&fourDate=' + fourDate); //+ '&lastValue=#');
+          //aLink.setAttribute('href', 'singleView2.html?ID=' + ID); //+ '&lastValue=#');
+          aUserList.setAttribute('href', '#'); //+ '&lastValue=#');
+          aUserList.innerText = '       Add to User list';
+          //////////////////////////////////////////////////////////////////////////////////
+
+
+          const divLink = document.createElement('div');
+          divLink.appendChild(aLink);
+          const divUser = document.createElement('div');
+          divUser.appendChild(aUserList);
+          const divLinks = document.createElement('div');
+          divLinks.appendChild(divLink);
+          divLinks.appendChild(divUser);
+
 
           center.appendChild(image);
           div_card.appendChild(center);
           div_card.appendChild(title);
-          div_card.appendChild(aLink);
+          //div_card.appendChild(aLink);
+          //div_card.appendChild(aUserList);
+          div_card.appendChild(divLinks);
           div_column.appendChild(div_card);
           div_row.appendChild(div_column);
 
@@ -87,3 +109,4 @@ form.addEventListener
     }
   }
 );
+
