@@ -5,19 +5,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>replitSingleMovieView</title>
+    <title>singleMovieView</title>
     <!--<link href="style.css" rel="stylesheet" type="text/css" />-->
   </head>
 
-  <body style="background-color: #131720;">
+  <body style="background-color: #131720; padding-left: 30px">
     <!--////////////////////"PRUEBA PARA VER CONTENIDO DE LOS PARAMETROS"////////////////////-->
     <div id ="forTests">
     </div>
 
     <!--////////////////////"TITULO PARA REGRESAR A INDEX.HTML"////////////////////-->
-    <div>
-      <a href="index.html">
-        <h1>HOME</h1>
+    <div style="padding-top: 25px">
+      <a href="index.html" style="color: white">
+        <h2>RETURN TO MAIN PAGE</h2>
       </a>
     </div>
 
@@ -52,9 +52,11 @@
       <br/>
 
       <form id="newReviewsContent">
-        <input type="text" placeholder="Review....." name="reviewBox" id="reviewBox"/>
-
-        </br>
+        <!--<input type="text" placeholder="Review....." name="reviewBox" id="reviewBox"/>-->
+        <div>
+          <textarea id="reviewTextArea">Escribe una reseña......</textarea>
+        </div>
+        
 
         <button onclick = "getText()">Add review</button>
       </form>
@@ -65,7 +67,7 @@
 
     <!--////////////////////"DIV MOSTRAR REVIEWS"////////////////////-->
     <div>
-      <h3 style="color: white">PAST REVIEWS:</h3>
+      <h3 style="color: white">OTHER REVIEWS:</h3>
 
       </br>
 
