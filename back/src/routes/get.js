@@ -7,8 +7,8 @@ router.get('/userbyid', api.userById);
 router.get('/userbyusername', api.getUserByUsername);
 router.get('/users', api.getUsers);
 router.get('/usernameexists', api.usernameExists);
-router.get('/getmovie', api.getMovie);
 router.get('/getuserlists', api.getLists);
 router.get('/getuserlistbyname', api.getList);
+router.get('/movierating', api.getMovieRating);
 
 module.exports = router;

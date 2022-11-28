@@ -1,5 +1,6 @@
 
 const db = require('../db/connect');
+const http = require('https');
 
 const userById = async (req, res) => {
     const { id } = req.body;
@@ -23,7 +24,7 @@ const getUsers = async (req, res) => {
     let [users] = await db.query( `SELECT * FROM users` );
     if(users){
         return res.status(200).json(users);
-    } 
+    }
     return res.status(400);
 }
 
@@ -59,4 +60,10 @@ const getList = async (req, res) => {
     return res.status(200).json(list);
 }
 
-module.exports = { userById, getUserByUsername, getUsers, usernameExists, getList, getLists };
+const getMovieRating = async (req, res) => {
+    const { movieid } = req.body;
+    let [rating] = await db.query('SELECT * FROM userratings WHERE movie = ?', movieid);
+    return res.status(200).json(rating);
+}
+
+module.exports = { userById, getUserByUsername, getUsers, usernameExists, getList, getLists, getMovieRating };
