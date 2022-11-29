@@ -43,28 +43,22 @@ const login = async (req, res) => {
 }
 
 const list = async (req, res) => {
-    const { username, password, listname, desc } = req.body;
-    let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
-    if(user.length > 0) {
-        if(user.password === password){
-            let [lists] = await db.query('SELECT * FROM usermovielist WHERE iduser = ?', user.id_user);
-            for(list of lists){
-                if(list.nombre === listname){
-                    return res.status(400).send("list already exists.");
-                }
-            }
-            let [list] = await db.query('INSERT INTO usermovielist SET ?', {
-                iduser: user.id_user,
-                nombre: listname,
-                descripcion: desc
-            });
-            if(list.length > 0){
-                return res.status(200).send("list created.");
-            }
-            return res.status(400).send("list not created.");
-        } 
+    const { id_user, listname, desc } = req.body;
+    let [lists] = await db.query('SELECT * FROM usermovielist WHERE iduser = ?', id_user);
+    for(list of lists){
+        if(list.nombre === listname){
+            return res.status(400).send("list already exists.");
+        }
     }
-    return res.status(400);
+    let [list] = await db.query('INSERT INTO usermovielist SET ?', {
+        iduser: id_user,
+        nombre: listname,
+        descripcion: desc
+    });
+    if(list.length > 0){
+        return res.status(200).send("list created.");
+    }
+    return res.status(400).send("list not created.");
 }
 
 const addMovie = async (req, res) => {

@@ -10,5 +10,7 @@ router.get('/usernameexists', api.usernameExists);
 router.get('/getuserlists', api.getLists);
 router.get('/getuserlistbyname', api.getList);
 router.get('/movierating', api.getMovieRating);
+router.get('/movieListByUserName', api.movieListByUserName);
+router.get('/movieIDByUserName', api.movieIDByUserName);
 
 module.exports = router;

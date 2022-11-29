@@ -1,6 +1,5 @@
 
 const db = require('../db/connect');
-const http = require('https');
 
 const userById = async (req, res) => {
     const { id } = req.body;
@@ -54,6 +53,28 @@ const getLists = async (req, res) => {
     return res.status(400);
 }
 
+const movieListByUserName = async (req, res) => {
+    const { username } = req.body;
+    let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
+    if(user.length == 0) {
+        return res.status(400);
+    }
+    let [list] = await db.query('SELECT * FROM usermovielist WHERE iduser = ?', user.id_user);
+    return res.status(200).json(list);
+}
+
+const movieIDByUserName = async (req, res) => {
+    const { username } = req.body;
+    let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
+    if(user.length == 0) {
+        return res.status(400);
+    }
+    let [list] = await db.query('SELECT * FROM usermovielist WHERE iduser = ?', user.id_user);
+    let [movies] = await db.query('SELECT movieid FROM listandmovies WHERE movielistid = ?', list.movielistid);
+    return res.status(200).json(movies);
+}
+
+
 const getList = async (req, res) => {
     const { movielistid } = req.body;
     let [list] = await db.query('SELECT * FROM usermovielist WHERE movielistid = ?', movielistid);
@@ -66,4 +87,4 @@ const getMovieRating = async (req, res) => {
     return res.status(200).json(rating);
 }
 
-module.exports = { userById, getUserByUsername, getUsers, usernameExists, getList, getLists, getMovieRating };
+module.exports = { userById, getUserByUsername, getUsers, usernameExists, getList, getLists, getMovieRating, movieListByUserName, movieIDByUserName };
