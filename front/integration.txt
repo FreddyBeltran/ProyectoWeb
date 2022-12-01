@@ -1,0 +1,1 @@
+Para login y register se tiene que mandar en json.

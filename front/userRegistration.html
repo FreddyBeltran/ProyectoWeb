@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>userRegistration</title>
+    <link rel="stylesheet" href="userRegistration.css">
+  </head>
+
+  <body style="background-color: #131720;">
+    <div>
+      <a href="index.html"><h1>HOME</h1></a>
+      <!--(CUANDO SE HAGA EL REGISTRO Y SI ES CORRECTO, SE MANDA LA ONFORMACION A LA BD Y SE REMANDA A HOME YA CON INICION INICIADA -> QUITAR ESTE VINCULO)-->
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+      <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+        <fieldset>
+          <legend><center><h2 style="color: white"><b>REGISTRARSE:</b></h2></center></legend>
+
+          <br>
+
+          <!------------ESPACIO PARA NOMBRE(S)------------>
+          <div class="form-group">
+            <label class="col-md-4 control-label" style="color: white">First Name:</label>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input id="namesInputValue"  name="first_name" placeholder="First Name" class="form-control"  type="text">
+          </div>
+
+          <!------------ESPACIO PARA APELLIDO(S)------------>
+          <div class="form-group">
+            <label class="col-md-4 control-label" style="color: white">Last Name:</label>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input id="lastNamesInputValue" name="last_name" placeholder="Last Name" class="form-control"  type="text">
+          </div>
+
+          <!------------ESPACIO PARA ID GENERADO AUTOMATICAMENTE------------>
+          <div class="form-group">
+            <label class="col-md-4 control-label" style="color: white">User ID: </label>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <input id="idInputValue" name="user_id" placeholder="AQUI VA EL USER ID QUE SE GENERA AUTOMATICAMENTE." class="form-control"  type="text">
+          </div>
+
+          <!------------ESPACIO PARA USERNAME------------>
+          <div class="form-group">
+            <label class="col-md-4 control-label" style="color: white">Username:</label>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input id="registerUsernameInputValue"  name="user_name" placeholder="Username" class="form-control"  type="text">
+          </div>
+
+          <!------------ESPACIO PARA CONTRASEÑA------------>
+          <div class="form-group">
+            <label class="col-md-4 control-label" style="color: white">Password</label>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input  id="registerPasswordInputValue"  name="user_password" placeholder="Password" class="form-control"  type="password">
+          </div>
+
+          <!------------ESPACIO PARA CONTRASEÑAx2------------>
+          <div class="form-group">
+            <label class="col-md-4 control-label" style="color: white">Confirm Password</label>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input id="registerTwoPasswordInputValue"  name="confirm_password" placeholder="Confirm Password" class="form-control"  type="password">
+          </div>
+
+          <!------------ESPACIO PARA CORREO------------>
+          <div class="form-group">
+            <label class="col-md-4 control-label" style="color: white">E-Mail</label>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            <input  id="mailInputValue"  name="email" placeholder="E-Mail Address" class="form-control"  type="text">
+          </div>
+
+          <br>
+
+          <!-- Button -->
+          <div>
+            <!--<a onclick="displayAlert()" style="background: white; color: black; cursor: pointer;"> LOG IN </a>-->
+            <a onclick="funcRegister()" style="background: white; color: black; cursor: pointer;"> REGISTER </a>
+          </div>
+
+          <!--<div class="form-group">
+            <label class="col-md-4 control-label"></label>
+
+            <div class="col-md-4">
+              <br>
+              <button type="submit" class="btn btn-warning" >REGISTER <span class="glyphicon glyphicon-send"></span></button>
+            </div>
+          </div>-->
+        </fieldset>
+      </form>
+    </div>
+  </body>
+
+  <script src="userRegistration.js"></script>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>logIn</title>
+    <link rel="stylesheet" href="userLogIn.css">
+  </head>
+
+  <body style="background-color: #131720;">
+    <div>
+      <!-- - (CUANDO SE HAGA EL LOGIN Y SI ES CORRECTO, SE MANDA LA ONFORMACION A LA BD Y SE REMANDA A HOME YA CON SESION INICIADA-> QUITAR ESTE VINCULO)-->
+      <a href="index.html"><h1>HOME</h1></a>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+      <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+        <fieldset>
+          <legend><center><h2  style="color: white"><b>INICIAR SESION:</b></h2></center></legend>
+
+          <br>
+
+          <!------------ESPACIO PARA USER------------>
+          <div class="form-group">
+            <label class="col-md-4 control-label" style="color: white">Username:</label>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            <input id="usernameInputValue" name="username" placeholder="Username" class="form-control"  type="text">
+          </div>
+
+         <!------------ESPACIO PARA CONTRASEÑA------------>
+         <div class="form-group">
+            <label class="col-md-4 control-label"  style="color: white">Password</label>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+            <input id="passwordInputValue" name="user_password" placeholder="Password" class="form-control" type="password">
+          </div>
+
+          <br>
+          <!------------ESPACIO PARA BOTON------------>
+          <div>
+            <a onclick="funcLogIn()" style="background: white; color: black; cursor: pointer;"> LOG IN </a>
+          </div>
+
+          <!--
+          <div class="form-group">
+            <label class="col-md-4 control-label"></label>
+
+            <br>
+
+            <div class="col-md-4">
+              <button id="submitButton" type="submit" class="btn btn-warning" >LOG IN <span class="glyphicon glyphicon-send"></span></button>
+            </div>
+          </div>
+        -->
+        </fieldset>
+      </form>
+    </div>
+  </body>
+
+  <script src="userLogin.js"></script>
+</html>

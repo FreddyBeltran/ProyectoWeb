@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+  <!--////////////////////"HEAD"////////////////////-->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>singleMovieView</title>
+  </head>
+  <!--////////////////////"BODY"////////////////////-->
+  <body style="background-color: #131720">
+    <!--////////////////////"TITULO PARA REGRESAR A INDEX.HTML"////////////////////-->
+    <div style="padding-top: 25px; padding-right: 45px; text-align: right">
+      <a href="index.html" style="color: white">
+        <h2>RETURN TO MAIN PAGE</h2>
+      </a>
+    </div>
+
+    <br
+
+    <!--////////////////////"NOMBRE DE LA PELICULA"////////////////////-->
+    <div id="movieNameSingleView" style="padding-left: 25px">
+    </div>
+
+    <br/>
+
+    <!--////////////////////"IMAGEN DE LA PELICULA"////////////////////-->
+    <div id ="imageSingleView" style="padding-left: 425px" class="card">
+    </div>
+
+    <br/>
+    <br/>
+
+    <!--////////////////////"DETALLES DE LA PELICULA CON EL NOMBRE, FECHA Y DESCRIPCION"////////////////////-->
+    <div id="detailsSingleView" style="padding-left: 25px">
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+    <!--////////////////////"DIV PARA HACER REVIEWS"////////////////////-->
+    <div style="padding-left: 25px">
+      <h3 style="color: white">MAKE A REVIEW:</h3>
+
+      <form id="newReviewsContent">
+        <!--<input type="text" placeholder="Review....." name="reviewBox" id="reviewBox"/>-->
+        <div>
+          <textarea id="reviewTextArea" cols="80" rows="5">Escribe una reseña......</textarea>
+        </div>
+
+
+        <button onclick = "getText()">Add review</button>
+      </form>
+    </div>
+
+    <br/>
+    <br/>
+
+    <!--////////////////////"DIV MOSTRAR REVIEWS"////////////////////-->
+    <div style="padding-left: 25px">
+      <h3 style="color: white">OTHER REVIEWS:</h3>
+
+      </br>
+
+      <div id="pastReviews">
+      </div>
+    </div>
+  </body>
+
+  <script src="singleView2.js"></script>
+</html>

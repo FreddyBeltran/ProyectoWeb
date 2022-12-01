@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+  <!--////////////////////"HEAD"////////////////////-->
+  <head>
+    <title>Movies Site</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <!--////////////////////"BODY"////////////////////-->
+  <body>
+    <!--////////////////////"HEADER"////////////////////-->
+    <header>
+    </header>
+    <!--////////////////////"MAIN"////////////////////-->
+    <main>
+      <!--////////////////////"PRUEBA PARA VER CONTENIDO DE LOS PARAMETROS"////////////////////-->
+      <div class="topnav">
+        <a class="active" href="#"><h1>Movies Site</h1></a>
+
+        <!--////////////////////"DIV PARA LA BARRA DE BUSQUEDA DE PELICULAS"////////////////////-->
+        <div id="userStatus" class="search-container">
+
+          <!--
+          <a href="userLogIn.html">Log In</a>
+
+          <a href="userRegistration.html">Register</a>
+        -->
+          <!--////////////////////"FORM QUE CONTIENE EL INPUT PARA BUSCAR TITULOS DE LAS PELICULAS"////////////////////-->
+          <form role="search" id="form">
+            <input type="search" id="query" name="q" placeholder="Search..">
+          </form>
+        </div>
+      </div>
+
+      <div id="spaceForUsername" style="padding-left: 55px">
+      </div>
+
+      <!--////////////////////"SIDEBAR PARA ACCEDER A LA LISTA PERSONAL DEL USUARIO"////////////////////-->
+      <nav id="sidebarMenu" style="text-align: right;padding-right: 30px;">
+        <div>
+          <ul>
+            <!--<li><a href="userList.html"><h2 style="color: white"><u>SEE USER PERSONAL LIST</h2><a></li>-->
+            <li><a id = "personalListLink"><h2 style="color: white"><u>SEE USER PERSONAL LIST</h2><a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <br>
+
+      <!--////////////////////"DIV PARA LA SECCION DONDE SE VAN A DESPLEGAR LAS CARDS DE LASPELICULAS TRAIDAS DE LA API"////////////////////-->
+      <div style="padding-left:20px">
+        <section id="section"></section>
+      </div>
+    </main>
+  </body>
+
+  <script src="script.js"></script>
+</html>

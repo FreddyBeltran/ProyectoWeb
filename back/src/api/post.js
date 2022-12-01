@@ -25,7 +25,13 @@ const register = async (req, res) => {
         updated_at: "2022-01-01 00:00:00"
     });
     if(user.length > 0) {
-        return res.status(200).send("Succesful.");
+        let [userMade] = await db.query('SELECT * FROM users WHERE username = ?', username);
+        await db.query('INSERT INTO usermovielist SET ?', {
+            iduser: userMade[0].id_user,
+            nombre: `Lista de ${username}`,
+            descripcion: `Lista creada por ${username} de sus peliculas favoritas.`
+        });
+        return res.status(400).send("Usuario creado.");
     } 
     return res.status(400).send('Username not created.');
 }
@@ -61,20 +67,44 @@ const list = async (req, res) => {
     return res.status(400).send("list not created.");
 }
 
+const userById = async (req, res) => {
+    const { id } = req.body;
+    let [user] = await db.query( `SELECT * FROM users WHERE id_user = ?`, id );
+    if(user){
+        return res.status(200).json(user);
+    } 
+    return res.status(404);
+}
+
+const getUserByUsername = async (req, res) => {
+    const { username } = req.body;
+    let [user] = await db.query( `SELECT * FROM users WHERE username = ?`, username );
+    if(user){
+        return res.status(200).json(user);
+    } 
+    return res.status(404);
+}
+
 const addMovie = async (req, res) => {
-    const { movielistid, movieid } = req.body;
-    let [sql] = await db.query(`INSERT INTO listandmovies (movieid, movielistid) VALUES (${movieid}, ${movielistid})`);
-    if(sql.affectedRows === 1){
-        return res.status(200).send('Movie added.');
+    const { username, movieid } = req.body;
+    let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
+    let [list] = await db.query('SELECT * FROM usermovielist WHERE iduser = ?', user[0].id_user);
+    let [list2] = await db.query(`SELECT movieid FROM listandmovies WHERE movieid = ${movieid} AND movielistid = ${list[0].movelistid}`);
+    if(!list2.length){
+        let [sql] = await db.query(`INSERT INTO listandmovies (movieid, movielistid) VALUES (${movieid}, ${list[0].movelistid})`);
+        if(sql.affectedRows === 1){
+            return res.status(200).send('Movie added.');
+        }
     }
-    return res.status(400).send('Error adding movie.');
+    return res.status(400).send('Duplicate movie.');
 }
 
 const addRating = async (req, res) => {
-    const { id_user, movieid, rating, comment } = req.body;
+    const { username, movieid, rating, comment } = req.body;
+    let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
     let movierating = await db.query('INSERT INTO userratings SET ?', 
     { 
-        user: id_user, 
+        user: user[0].id_user, 
         movie: movieid,
         rating: rating,
         comment: comment,
@@ -87,4 +117,41 @@ const addRating = async (req, res) => {
     return res.status(400).send('Rating not created.');
 }
 
-module.exports = { login, list, addMovie, register, addRating };
+const movieListByUserName = async (req, res) => {
+    const { username } = req.body;
+    let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
+    if(user.length == 0) {
+        return res.status(400);
+    }
+    let [list] = await db.query('SELECT * FROM usermovielist WHERE iduser = ?', user[0].id_user);
+    return res.status(200).json(list);
+}
+
+const movieIDByUserName = async (req, res) => {
+    const { username } = req.body;
+    let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
+    if(user.length == 0) {
+        return res.status(400);
+    }
+    let [list] = await db.query('SELECT * FROM usermovielist WHERE iduser = ?', user[0].id_user);
+    let [movies] = await db.query('SELECT movieid FROM listandmovies WHERE movielistid = ?', list[0].movelistid);
+    if(movies.length > 0){
+        return res.status(200).json(movies);
+    }
+    return res.status(400).send("No movies found.")
+}
+
+const getList = async (req, res) => {
+    const { movielistid } = req.body;
+    let [list] = await db.query('SELECT * FROM usermovielist WHERE movielistid = ?', movielistid);
+    return res.status(200).json(list);
+}
+
+const getMovieRating = async (req, res) => {
+    const { username, movieid } = req.body;
+    let [user] = await db.query('SELECT * FROM users WHERE username = ?', username);
+    let [rating] = await db.query(`SELECT * FROM userratings WHERE movie = ${movieid} AND user = ${user[0].id_user}`);
+    return res.status(200).json(rating);
+}
+
+module.exports = { login, list, addMovie, register, addRating, getMovieRating, getList, movieIDByUserName, movieListByUserName, userById, getUserByUsername };
